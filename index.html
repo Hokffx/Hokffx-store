@@ -69,9 +69,13 @@ header {
   margin-top: 30px;
 }
 
-input[type="file"] {
-  margin-top: 10px;
-  color: white;
+input, input[type="file"] {
+  margin: 10px auto;
+  padding: 10px;
+  width: 220px;
+  border-radius: 8px;
+  border: none;
+  display: block;
 }
 
 .popup {
@@ -102,45 +106,45 @@ input[type="file"] {
 
 <body>
 
-<header>💎 Hokffx Store</header>
+<header>Hokffx Store</header>
 
 <div class="card">
 
-  <!-- ✅ LOCAL PRODUCT IMAGE -->
-  <img src="product.png">
+  <img src="product.jpg">
 
   <h2>iPhone Auxilio</h2>
   <div class="price">$6.30</div>
 
-  <!-- 💰 RAZORPAY -->
   <a href="https://razorpay.me/@enjoymenthub?amount=KdokedV%2BOwry8bk9gDbLpg%3D%3D" target="_blank" class="btn">
-    Buy Premium
+    Buy 
   </a>
 
-  <!-- 🌍 INTERNATIONAL -->
   <button class="btn intl" onclick="showQR()">International Payment</button>
 
 </div>
 
-<!-- 📩 EMAIL + PROOF -->
+<!-- ORDER SECTION -->
 <div class="section">
-  <h3>📩 Send Payment Proof</h3>
+  <h3>🧾 Complete Your Order</h3>
 
-  <!-- ✅ FIXED EMAIL -->
-  <a href="mailto:forenjoymenthub@gmail.com" class="btn">Send Gmail</a>
+  <!-- BUYER EMAIL -->
+  <input type="email" id="buyerEmail" placeholder="Enter your Gmail">
 
-  <!-- ✅ IMAGE ONLY UPLOAD -->
+  <!-- PROOF UPLOAD -->
   <input type="file" accept="image/*">
+
+  <!-- ORDER BUTTON -->
+  <button class="btn" onclick="placeOrder()">Order</button>
+
+  <p id="message"></p>
 </div>
 
-<!-- 💳 BINANCE QR -->
+<!-- QR POPUP -->
 <div class="popup" id="qrPopup">
   <div class="popup-box">
     <h2>🌍 International Payment</h2>
-
     <p>Scan with Binance & pay $6.30</p>
 
-    <!-- ✅ LOCAL QR IMAGE -->
     <img src="qr.png">
 
     <p><b>Payment Name:</b> Hokffx</p>
@@ -161,6 +165,18 @@ function showQR() {
 
 function closeQR() {
   document.getElementById("qrPopup").style.display = "none";
+}
+
+function placeOrder() {
+  let email = document.getElementById("buyerEmail").value;
+
+  if(email === "") {
+    alert("Please enter your Gmail");
+    return;
+  }
+
+  document.getElementById("message").innerHTML =
+  "✅ Order placed!<br>📩 Send payment screenshot + your Gmail to: forenjoymenthub@gmail.com";
 }
 </script>
 
