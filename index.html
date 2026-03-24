@@ -12,7 +12,13 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #4c00ff, #1a0033);
+
+    background:
+    radial-gradient(circle at 20% 20%, #7b00ff, transparent 40%),
+    radial-gradient(circle at 80% 30%, #a855f7, transparent 40%),
+    radial-gradient(circle at 50% 100%, #4c00ff, transparent 50%),
+    linear-gradient(135deg, #12001f, #2a0050);
+
     color: white;
 }
 
@@ -25,7 +31,7 @@ body {
 .header h1 {
     font-family: 'Orbitron', sans-serif;
     font-size: 46px;
-    background: linear-gradient(90deg, #fff, #e0aaff);
+    background: linear-gradient(90deg, #ffffff, #e0aaff, #c084fc);
     -webkit-background-clip: text;
     color: transparent;
 }
@@ -43,13 +49,15 @@ body {
     border-radius: 25px;
     overflow: hidden;
     margin-bottom: 25px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
 }
 
+/* IMAGE */
 .card img {
     width: 100%;
 }
 
+/* CONTENT */
 .content {
     padding: 20px;
 }
@@ -85,9 +93,10 @@ body {
     font-weight: 600;
 }
 
+/* NOTE */
 .note { 
     font-size: 12px; 
-    margin-top: 6px; 
+    margin-top: 10px; 
     color: #ccc;
     text-align: center;
 }
@@ -137,13 +146,12 @@ body {
         <input type="email" id="email1" class="input" placeholder="Enter your Gmail">
 
         <button class="btn" onclick="payNow('iphone')">💰 PAY NOW</button>
+        <button class="btn" onclick="sendOrder('email1')">📩 SEND ORDER</button>
+        <button class="btn" onclick="showQR('iphone')"> 🇺🇸 INTERNATIONAL PAYMENT</button>
 
         <div class="note">
         send screenshot proof of payment along with order through Gmail
         </div>
-
-        <button class="btn" onclick="sendOrder('email1')">📩 SEND ORDER</button>
-        <button class="btn" onclick="showQR('iphone')"> 🇺🇸 INTERNATIONAL PAYMENT</button>
     </div>
 </div>
 
@@ -157,13 +165,12 @@ body {
         <input type="email" id="email2" class="input" placeholder="Enter your Gmail">
 
         <button class="btn" onclick="payNow('android')">💰 PAY NOW</button>
+        <button class="btn" onclick="sendOrder('email2')">📩 SEND ORDER</button>
+        <button class="btn" onclick="showQR('android')"> 🇺🇸 INTERNATIONAL PAYMENT</button>
 
         <div class="note">
         send screenshot proof of payment along with order through Gmail
         </div>
-
-        <button class="btn" onclick="sendOrder('email2')">📩 SEND ORDER</button>
-        <button class="btn" onclick="showQR('android')"> 🇺🇸 INTERNATIONAL PAYMENT</button>
     </div>
 </div>
 
