@@ -13,11 +13,13 @@ body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
 
-    background:
-    radial-gradient(circle at 20% 20%, #7b00ff, transparent 40%),
-    radial-gradient(circle at 80% 30%, #a855f7, transparent 40%),
-    radial-gradient(circle at 50% 100%, #4c00ff, transparent 50%),
-    linear-gradient(135deg, #12001f, #2a0050);
+    background: linear-gradient(
+        180deg,
+        #0b001a 0%,
+        #3b008f 40%,
+        #7b00ff 70%,
+        #b266ff 100%
+    );
 
     color: white;
 }
@@ -25,13 +27,13 @@ body {
 /* HEADER */
 .header {
     text-align: center;
-    padding: 40px;
+    padding: 60px 20px 20px;
 }
 
 .header h1 {
     font-family: 'Orbitron', sans-serif;
     font-size: 46px;
-    background: linear-gradient(90deg, #ffffff, #e0aaff, #c084fc);
+    background: linear-gradient(90deg, #fff, #e0aaff);
     -webkit-background-clip: text;
     color: transparent;
 }
@@ -45,11 +47,15 @@ body {
 
 /* CARD */
 .card {
-    background: rgba(255,255,255,0.05);
     border-radius: 25px;
     overflow: hidden;
     margin-bottom: 25px;
-    backdrop-filter: blur(12px);
+
+    background: linear-gradient(
+        180deg,
+        #6a00ff,
+        #3b008f
+    );
 }
 
 /* IMAGE */
@@ -59,22 +65,52 @@ body {
 
 /* CONTENT */
 .content {
-    padding: 20px;
+    padding: 25px;
 }
 
-.title { font-size: 22px; }
+/* TITLE */
+.title {
+    font-size: 24px;
+    font-weight: 600;
+}
 
+/* PRICE SECTION */
+.price-box {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #d1d1d1;
+    font-size: 18px;
+}
+
+/* GRADIENT PRICE */
 .price {
-    font-size: 28px;
-    color: #e0aaff;
+    font-size: 36px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ff00cc, #ff66ff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* ACCESS */
+.access {
+    margin-top: 8px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #ddd;
 }
 
 /* INPUT */
 .input {
     width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 20px;
+    padding: 14px;
+    margin-top: 15px;
+    border-radius: 30px;
     border: none;
     text-align: center;
 }
@@ -83,9 +119,9 @@ body {
 .btn {
     display: block;
     width: 100%;
-    padding: 14px;
-    margin-top: 10px;
-    border-radius: 25px;
+    padding: 15px;
+    margin-top: 12px;
+    border-radius: 30px;
     background: linear-gradient(135deg, #7b00ff, #c084fc);
     color: white;
     border: none;
@@ -94,10 +130,10 @@ body {
 }
 
 /* NOTE */
-.note { 
-    font-size: 12px; 
-    margin-top: 10px; 
-    color: #ccc;
+.note {
+    font-size: 12px;
+    margin-top: 10px;
+    color: #eee;
     text-align: center;
 }
 
@@ -136,18 +172,25 @@ body {
 
 <div class="container">
 
-<!-- 🍎 iPhone -->
+<!-- iPhone -->
 <div class="card">
     <img src="iphone-auxilio.png">
+
     <div class="content">
         <div class="title">iPhone Auxilio</div>
-        <div class="price">$6.40</div>
+
+        <div class="price-box">
+            <span class="old-price">$12</span>
+            <span class="price">$6.40</span>
+        </div>
+
+        <div class="access">PERMANENT ACCESS</div>
 
         <input type="email" id="email1" class="input" placeholder="Enter your Gmail">
 
         <button class="btn" onclick="payNow('iphone')">💰 PAY NOW</button>
         <button class="btn" onclick="sendOrder('email1')">📩 SEND ORDER</button>
-        <button class="btn" onclick="showQR('iphone')"> 🇺🇸 INTERNATIONAL PAYMENT</button>
+        <button class="btn" onclick="showQR('iphone')"> 🌎 INTERNATIONAL PAYMENT</button>
 
         <div class="note">
         send screenshot proof of payment along with order through Gmail
@@ -155,12 +198,19 @@ body {
     </div>
 </div>
 
-<!-- 🤖 Android -->
+<!-- Android -->
 <div class="card">
     <img src="android-auxilio.png">
+
     <div class="content">
         <div class="title">Android Auxilio</div>
-        <div class="price">$5.20</div>
+
+        <div class="price-box">
+            <span class="old-price">$8</span>
+            <span class="price">$5.20</span>
+        </div>
+
+        <div class="access">PERMANENT ACCESS</div>
 
         <input type="email" id="email2" class="input" placeholder="Enter your Gmail">
 
@@ -176,7 +226,7 @@ body {
 
 </div>
 
-<!-- 🌍 QR POPUP -->
+<!-- QR POPUP -->
 <div class="popup" id="qrPopup">
   <div class="popup-box">
     <h3 id="qrTitle">Scan QR</h3>
