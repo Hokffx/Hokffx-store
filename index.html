@@ -16,19 +16,6 @@ body {
     color: white;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    width: 600px;
-    height: 600px;
-    background: #7b00ff;
-    filter: blur(250px);
-    top: -200px;
-    left: -200px;
-    opacity: 0.4;
-    z-index: -1;
-}
-
 /* HEADER */
 .header {
     text-align: center;
@@ -38,9 +25,7 @@ body::before {
 .header h1 {
     font-family: 'Orbitron', sans-serif;
     font-size: 46px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    background: linear-gradient(90deg, #ffffff, #c084fc, #7b00ff);
+    background: linear-gradient(90deg, #fff, #c084fc);
     -webkit-background-clip: text;
     color: transparent;
 }
@@ -57,7 +42,6 @@ body::before {
     background: rgba(255,255,255,0.05);
     border-radius: 25px;
     overflow: hidden;
-    backdrop-filter: blur(20px);
     margin-bottom: 25px;
 }
 
@@ -65,19 +49,12 @@ body::before {
     width: 100%;
 }
 
-/* CONTENT */
 .content {
     padding: 20px;
 }
 
-.title {
-    font-size: 22px;
-}
-
-.price {
-    font-size: 28px;
-    color: #c084fc;
-}
+.title { font-size: 22px; }
+.price { font-size: 28px; color: #c084fc; }
 
 /* INPUT */
 .input {
@@ -98,42 +75,21 @@ body::before {
     border-radius: 25px;
     background: linear-gradient(135deg, #7b00ff, #c084fc);
     color: white;
-    font-weight: bold;
     border: none;
     cursor: pointer;
 }
 
-/* NOTE */
-.note {
-    font-size: 12px;
-    margin-top: 8px;
-}
+.note { font-size: 12px; margin-top: 8px; }
 
-/* FAQ */
-.faq {
-    margin-top: 10px;
-    cursor: pointer;
-    color: #c084fc;
-}
-
-.answer {
-    display: none;
-    font-size: 13px;
-    margin-top: 5px;
-}
-
-/* ❌ NO ANIMATION POPUP */
+/* POPUP */
 .popup {
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     display: none;
     background: rgba(0,0,0,0.9);
 }
 
-/* CENTER BOX */
 .popup-box {
     position: absolute;
     top: 50%;
@@ -148,6 +104,16 @@ body::before {
 
 .popup img {
     width: 200px;
+}
+
+/* ABOUT SECTION */
+.about {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 25px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    line-height: 1.7;
 }
 </style>
 </head>
@@ -169,16 +135,11 @@ body::before {
 
         <input type="email" id="email1" class="input" placeholder="Enter your Gmail">
 
-        <button class="btn" onclick="payNow()">💰 PAY NOW</button>
+        <button class="btn" onclick="payNow('iphone')">💰 PAY NOW</button>
         <button class="btn" onclick="sendOrder('email1')">📩 SEND ORDER</button>
-        <button class="btn" onclick="showQR()">🌍 INTERNATIONAL PAYMENT</button>
+        <button class="btn" onclick="showQR('iphone')">🇺🇸INTERNATIONAL PAYMENT</button>
 
-        <div class="note">Pay → then send proof</div>
-
-        <div class="faq" onclick="toggleFAQ('faq1')">❓ Is that 100% safe?</div>
-        <div class="answer" id="faq1">
-        ✅ Safe & trusted<br>🔒 Secure payment<br>⚡ Fast delivery
-        </div>
+        <div class="note">Pay → then send screenshot proof</div>
     </div>
 </div>
 
@@ -187,38 +148,69 @@ body::before {
     <img src="android-auxilio.png">
     <div class="content">
         <div class="title">Android Auxilio</div>
-        <div class="price">$6.40</div>
+        <div class="price">$5.2</div>
 
         <input type="email" id="email2" class="input" placeholder="Enter your Gmail">
 
-        <button class="btn" onclick="payNow()">💰 PAY NOW</button>
+        <button class="btn" onclick="payNow('android')">💰 PAY NOW</button>
         <button class="btn" onclick="sendOrder('email2')">📩 SEND ORDER</button>
-        <button class="btn" onclick="showQR()"> 🇺🇸 INTERNATIONAL PAYMENT</button>
+        <button class="btn" onclick="showQR('android')">🇺🇸 INTERNATIONAL PAYMENT</button>
 
-        <div class="note">Pay → then send proof</div>
-
-        <div class="faq" onclick="toggleFAQ('faq2')">❓ Is that 100% safe?</div>
-        <div class="answer" id="faq2">
-        ✅ Safe & trusted<br>🔒 Secure payment<br>⚡ Fast delivery
-        </div>
+        <div class="note">Pay → then send screenshot proof</div>
     </div>
 </div>
 
 </div>
 
-<!-- QR POPUP (NO ANIMATION) -->
+<!-- QR POPUP -->
 <div class="popup" id="qrPopup">
   <div class="popup-box">
-    <h3>Scan Binance QR</h3>
-    <img src="qr.png">
+    <h3 id="qrTitle">Scan QR</h3>
+    <img id="qrImage" src="">
     <br><br>
     <button onclick="closeQR()">Close</button>
   </div>
 </div>
 
+<!-- 🔥 ABOUT AUXILIO SECTION -->
+<div class="about">
+<h2 style="text-align:center; color:#c084fc;">About Auxilio</h2>
+
+<p>
+Auxilio is a premium performance-enhancing tool designed to deliver a smoother and more optimized experience. 
+It is built with a focus on stability, efficiency, and user-friendly functionality.
+</p>
+
+<p>
+The system is developed to ensure reliable performance while maintaining simplicity for users of all levels. 
+Regular updates help keep the tool compatible with the latest devices and environments.
+</p>
+
+<ul>
+<li>✅ Optimized for smooth performance</li>
+<li>✅ Secure and stable system</li>
+<li>✅ Easy to use interface</li>
+<li>✅ Fast setup process</li>
+<li>✅ Regular updates and support</li>
+</ul>
+
+<p>
+Our goal is to provide a high-quality experience with strong attention to user satisfaction and reliability.
+</p>
+
+<p style="color:#aaa;">
+Note: Use responsibly and follow platform guidelines.
+</p>
+</div>
+
 <script>
-function payNow() {
-    window.open("https://razorpay.me/@enjoymenthub?amount=%2FjgOm4sSt2cRPlGWeT7aQg%3D%3D");
+function payNow(type) {
+    if(type === "iphone"){
+        window.open("https://razorpay.me/@enjoymenthub?amount=%2FjgOm4sSt2cRPlGWeT7aQg%3D%3D");
+    }
+    if(type === "android"){
+        window.open("https://razorpay.me/@enjoymenthub?amount=%2Fx%2FyRyzdyOzRtifdVVuPAQ%3D%3D");
+    }
 }
 
 function sendOrder(id) {
@@ -232,17 +224,25 @@ function sendOrder(id) {
     `mailto:forenjoymenthub@gmail.com?subject=Order&body=Email:${email}%0AProof attached`;
 }
 
-function showQR() {
+function showQR(type) {
+    let img = document.getElementById("qrImage");
+    let title = document.getElementById("qrTitle");
+
+    if(type === "iphone"){
+        img.src = "qr-iphone.png";
+        title.innerText = "iPhone Payment QR";
+    }
+
+    if(type === "android"){
+        img.src = "qr-android.png";
+        title.innerText = "Android Payment QR";
+    }
+
     document.getElementById("qrPopup").style.display = "block";
 }
 
 function closeQR() {
     document.getElementById("qrPopup").style.display = "none";
-}
-
-function toggleFAQ(id) {
-    let el = document.getElementById(id);
-    el.style.display = el.style.display === "block" ? "none" : "block";
 }
 </script>
 
