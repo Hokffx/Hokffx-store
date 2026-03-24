@@ -5,13 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hokffx Store</title>
 
-<!-- FONTS -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 
 <style>
-
-/* 🌌 BACKGROUND */
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -19,7 +16,6 @@ body {
     color: white;
 }
 
-/* GLOW */
 body::before {
     content: "";
     position: fixed;
@@ -47,26 +43,6 @@ body::before {
     background: linear-gradient(90deg, #ffffff, #c084fc, #7b00ff);
     -webkit-background-clip: text;
     color: transparent;
-    text-shadow: 0 0 20px rgba(192,132,252,0.8),
-                 0 0 40px rgba(123,0,255,0.6);
-    position: relative;
-}
-
-/* ✨ SHINE */
-.header h1::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.8), transparent);
-    animation: shine 3s infinite;
-}
-
-@keyframes shine {
-    0% { left: -100%; }
-    100% { left: 100%; }
 }
 
 /* CONTAINER */
@@ -96,7 +72,6 @@ body::before {
 
 .title {
     font-size: 22px;
-    font-weight: 600;
 }
 
 .price {
@@ -114,7 +89,7 @@ body::before {
     text-align: center;
 }
 
-/* 💜 BUTTON */
+/* BUTTON */
 .btn {
     display: block;
     width: 100%;
@@ -131,7 +106,6 @@ body::before {
 /* NOTE */
 .note {
     font-size: 12px;
-    color: #ccc;
     margin-top: 8px;
 }
 
@@ -146,10 +120,9 @@ body::before {
     display: none;
     font-size: 13px;
     margin-top: 5px;
-    color: #ddd;
 }
 
-/* POPUP */
+/* ❌ NO ANIMATION POPUP */
 .popup {
     position: fixed;
     top: 0;
@@ -157,22 +130,25 @@ body::before {
     width: 100%;
     height: 100%;
     display: none;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0,0,0,0.9);
 }
 
+/* CENTER BOX */
 .popup-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: white;
     color: black;
     padding: 20px;
     border-radius: 12px;
+    text-align: center;
 }
 
 .popup img {
     width: 200px;
 }
-
 </style>
 </head>
 
@@ -184,47 +160,53 @@ body::before {
 
 <div class="container">
 
+<!-- iPhone -->
 <div class="card">
     <img src="iphone-auxilio.png">
-
     <div class="content">
         <div class="title">iPhone Auxilio</div>
         <div class="price">$6.40</div>
 
         <input type="email" id="email1" class="input" placeholder="Enter your Gmail">
 
-        <button class="btn"
-        onclick="payNow('https://razorpay.me/@enjoymenthub?amount=%2FjgOm4sSt2cRPlGWeT7aQg%3D%3D')">
-        💰 PAY NOW
-        </button>
+        <button class="btn" onclick="payNow()">💰 PAY NOW</button>
+        <button class="btn" onclick="sendOrder('email1')">📩 SEND ORDER</button>
+        <button class="btn" onclick="showQR()">🌍 INTERNATIONAL PAYMENT</button>
 
-        <button class="btn" onclick="sendOrder('email1')">
-        📩 SEND ORDER
-        </button>
+        <div class="note">Pay → then send proof</div>
 
-        <button class="btn" onclick="showQR()">
-        🇺🇸 INTERNATIONAL PAYMENT
-        </button>
-
-        <div class="note">
-        Pay first → then click SEND ORDER and attach screenshot proof.
-        </div>
-
-        <div class="faq" onclick="toggleFAQ('faq1')">
-        ❓ Is that 100% safe?
-        </div>
+        <div class="faq" onclick="toggleFAQ('faq1')">❓ Is that 100% safe?</div>
         <div class="answer" id="faq1">
-        ✅ Yes, it's fully safe and accepted.<br>
-        🔒 Secure payment methods.<br>
-        ⚡ Fast delivery after verification.
+        ✅ Safe & trusted<br>🔒 Secure payment<br>⚡ Fast delivery
         </div>
+    </div>
+</div>
 
+<!-- Android -->
+<div class="card">
+    <img src="android-auxilio.png">
+    <div class="content">
+        <div class="title">Android Auxilio</div>
+        <div class="price">$6.40</div>
+
+        <input type="email" id="email2" class="input" placeholder="Enter your Gmail">
+
+        <button class="btn" onclick="payNow()">💰 PAY NOW</button>
+        <button class="btn" onclick="sendOrder('email2')">📩 SEND ORDER</button>
+        <button class="btn" onclick="showQR()"> 🇺🇸 INTERNATIONAL PAYMENT</button>
+
+        <div class="note">Pay → then send proof</div>
+
+        <div class="faq" onclick="toggleFAQ('faq2')">❓ Is that 100% safe?</div>
+        <div class="answer" id="faq2">
+        ✅ Safe & trusted<br>🔒 Secure payment<br>⚡ Fast delivery
+        </div>
     </div>
 </div>
 
 </div>
 
-<!-- QR -->
+<!-- QR POPUP (NO ANIMATION) -->
 <div class="popup" id="qrPopup">
   <div class="popup-box">
     <h3>Scan Binance QR</h3>
@@ -235,30 +217,23 @@ body::before {
 </div>
 
 <script>
-function payNow(link) {
-    window.open(link, "_blank");
+function payNow() {
+    window.open("https://razorpay.me/@enjoymenthub?amount=%2FjgOm4sSt2cRPlGWeT7aQg%3D%3D");
 }
 
-function sendOrder(emailId) {
-    let email = document.getElementById(emailId).value;
-
-    if (email === "" || !email.includes("@")) {
-        alert("Enter valid Gmail!");
+function sendOrder(id) {
+    let email = document.getElementById(id).value;
+    if(email === "") {
+        alert("Enter Gmail");
         return;
     }
 
-    let yourEmail = "forenjoymenthub@gmail.com";
-
-    let subject = "Payment Proof - Hokffx Store";
-    let body = "Customer Gmail: " + email + 
-               "\\n\\nI have completed payment. Sending screenshot proof.";
-
     window.location.href =
-    `mailto:${yourEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    `mailto:forenjoymenthub@gmail.com?subject=Order&body=Email:${email}%0AProof attached`;
 }
 
 function showQR() {
-    document.getElementById("qrPopup").style.display = "flex";
+    document.getElementById("qrPopup").style.display = "block";
 }
 
 function closeQR() {
