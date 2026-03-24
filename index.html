@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hokffx Store</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0a1f44, #0f3460, #16213e);
+  color: white;
+  text-align: center;
+}
+
+header {
+  padding: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  background: rgba(0,0,0,0.4);
+}
+
+.card {
+  background: rgba(255,255,255,0.08);
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 20px;
+  width: 320px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.price {
+  margin: 10px 0;
+  font-size: 22px;
+  color: #00eaff;
+}
+
+.btn {
+  display: block;
+  margin: 12px auto;
+  padding: 14px;
+  width: 230px;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: scale(1.07);
+}
+
+.intl {
+  background: linear-gradient(45deg, #ff0055, #7b00ff);
+}
+
+.section {
+  margin-top: 30px;
+}
+
+input[type="file"] {
+  margin-top: 10px;
+  color: white;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.85);
+}
+
+.popup-box {
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.popup img {
+  width: 220px;
+  border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>💎 Hokffx Store</header>
+
+<div class="card">
+
+  <!-- ✅ LOCAL PRODUCT IMAGE -->
+  <img src="product.jpg">
+
+  <h2>iPhone Auxilio</h2>
+  <div class="price">$6.30</div>
+
+  <!-- 💰 RAZORPAY -->
+  <a href="https://razorpay.me/@enjoymenthub?amount=KdokedV%2BOwry8bk9gDbLpg%3D%3D" target="_blank" class="btn">
+    Buy Premium
+  </a>
+
+  <!-- 🌍 INTERNATIONAL -->
+  <button class="btn intl" onclick="showQR()">International Payment</button>
+
+</div>
+
+<!-- 📩 EMAIL + PROOF -->
+<div class="section">
+  <h3>📩 Send Payment Proof</h3>
+
+  <!-- ✅ FIXED EMAIL -->
+  <a href="mailto:forenjoymenthub@gmail.com" class="btn">Send Gmail</a>
+
+  <!-- ✅ IMAGE ONLY UPLOAD -->
+  <input type="file" accept="image/*">
+</div>
+
+<!-- 💳 BINANCE QR -->
+<div class="popup" id="qrPopup">
+  <div class="popup-box">
+    <h2>🌍 International Payment</h2>
+
+    <p>Scan with Binance & pay $6.30</p>
+
+    <!-- ✅ LOCAL QR IMAGE -->
+    <img src="qr.png">
+
+    <p><b>Payment Name:</b> Hokffx</p>
+
+    <p style="color:red; font-size:14px;">
+      ⚠️ Send exact amount & upload proof
+    </p>
+
+    <br>
+    <button onclick="closeQR()">Close</button>
+  </div>
+</div>
+
+<script>
+function showQR() {
+  document.getElementById("qrPopup").style.display = "flex";
+}
+
+function closeQR() {
+  document.getElementById("qrPopup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
