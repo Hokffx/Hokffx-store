@@ -11,41 +11,45 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: radial-gradient(circle at top, #4c00ff, #0a001a 70%);
+    background: radial-gradient(circle at top, #001f3f, #000814 70%);
     color: white;
 }
 
-/* HEADER */
-.header {
-    text-align: center;
-    padding: 40px 20px 20px;
+body::before {
+    content: "";
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: #ff003c;
+    filter: blur(250px);
+    top: -200px;
+    left: -200px;
+    opacity: 0.4;
+    z-index: -1;
 }
 
-.header p {
-    color: #c084fc;
-    letter-spacing: 4px;
-    font-size: 12px;
+.header {
+    text-align: center;
+    padding: 40px 20px;
 }
 
 .header h1 {
     font-size: 42px;
     font-weight: 800;
-    background: linear-gradient(90deg, #ffffff, #d946ef, #7b00ff);
+    background: linear-gradient(90deg, #fff, #ff003c);
     -webkit-background-clip: text;
     color: transparent;
 }
 
-/* CONTAINER */
 .container {
     max-width: 420px;
     margin: auto;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 35px;
+    gap: 30px;
 }
 
-/* CARD */
 .card {
     background: rgba(255,255,255,0.05);
     border-radius: 25px;
@@ -54,63 +58,54 @@ body {
     border: 1px solid rgba(255,255,255,0.1);
 }
 
-/* IMAGE */
 .card img {
     width: 100%;
 }
 
-/* CONTENT */
 .content {
-    padding: 25px;
+    padding: 20px;
 }
 
 .title {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
 }
 
 .price {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 800;
-    color: #c084fc;
+    color: #ff4d6d;
 }
 
-/* INPUT */
 .input {
-    margin-top: 15px;
     width: 100%;
-    padding: 14px;
-    border-radius: 30px;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 20px;
     border: none;
     text-align: center;
 }
 
-/* BUTTON */
 .btn {
     display: block;
     width: 100%;
     padding: 14px;
-    border-radius: 30px;
-    background: linear-gradient(135deg, #ff00cc, #7b00ff);
+    margin-top: 10px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #ff003c, #ff4d6d);
     color: white;
     text-align: center;
-    margin-top: 10px;
-    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
 }
 
-/* INTERNATIONAL */
-.intl {
-    background: linear-gradient(135deg, #00c6ff, #0072ff);
-}
-
-/* NOTE */
 .note {
     font-size: 12px;
     margin-top: 8px;
     color: #ccc;
 }
 
-/* POPUP */
 .popup {
     position: fixed;
     top: 0;
@@ -120,7 +115,7 @@ body {
     display: none;
     justify-content: center;
     align-items: center;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.85);
 }
 
 .popup-box {
@@ -140,7 +135,6 @@ body {
 <body>
 
 <div class="header">
-    <p>👑 PREMIUM GAMING TOOLS 👑</p>
     <h1>Hokffx Store</h1>
 </div>
 
@@ -156,16 +150,25 @@ body {
 
         <input type="email" id="email1" class="input" placeholder="Enter your Gmail">
 
-        <!-- RAZORPAY -->
-        <a href="#" class="btn"
-        onclick="order('email1','https://razorpay.me/@enjoymenthub?amount=B3GVR7kTFeLelIPkLbK6rA%3D%3D')">
-        🛒 BUY NOW
-        </a>
+        <!-- PAY -->
+        <button class="btn"
+        onclick="payNow('https://razorpay.me/@enjoymenthub?amount=%2FjgOm4sSt2cRPlGWeT7aQg%3D%3D')">
+        💰 PAY NOW
+        </button>
+
+        <!-- ORDER -->
+        <button class="btn" onclick="sendOrder('email1')">
+        📩 SEND ORDER
+        </button>
 
         <!-- INTERNATIONAL -->
-        <button class="btn intl" onclick="showQR()">🌍 International Payment</button>
+        <button class="btn" onclick="showQR()">
+        🌍 INTERNATIONAL PAYMENT
+        </button>
 
-        <div class="note">Send screenshot proof along with order</div>
+        <div class="note">
+        Pay first → then click SEND ORDER and attach screenshot proof.
+        </div>
     </div>
 </div>
 
@@ -179,14 +182,22 @@ body {
 
         <input type="email" id="email2" class="input" placeholder="Enter your Gmail">
 
-        <a href="#" class="btn"
-        onclick="order('email2','https://razorpay.me/@enjoymenthub?amount=xvXrjwbshe5hrsUjCd6Rig%3D%3D ')">
-        🛒 BUY NOW
-        </a>
+        <button class="btn"
+        onclick="payNow('https://razorpay.me/@enjoymenthub?amount=%2FjgOm4sSt2cRPlGWeT7aQg%3D%3D')">
+        💰 PAY NOW
+        </button>
 
-        <button class="btn intl" onclick="showQR()">🌍 International Payment</button>
+        <button class="btn" onclick="sendOrder('email2')">
+        📩 SEND ORDER
+        </button>
 
-        <div class="note">Send screenshot proof along with order</div>
+        <button class="btn" onclick="showQR()">
+        🌍 INTERNATIONAL PAYMENT
+        </button>
+
+        <div class="note">
+        Pay first → then click SEND ORDER and attach screenshot proof.
+        </div>
     </div>
 </div>
 
@@ -203,7 +214,11 @@ body {
 </div>
 
 <script>
-function order(emailId, paymentLink) {
+function payNow(link) {
+    window.open(link, "_blank");
+}
+
+function sendOrder(emailId) {
     let email = document.getElementById(emailId).value;
 
     if (email === "" || !email.includes("@")) {
@@ -213,23 +228,20 @@ function order(emailId, paymentLink) {
 
     let yourEmail = "forenjoymenthub@gmail.com";
 
-    let subject = "New Order - Hokffx Store";
-    let body = "Customer Gmail: " + email;
+    let subject = "Payment Proof - Hokffx Store";
+    let body = "Customer Gmail: " + email + 
+               "\\n\\nI have completed payment. Sending screenshot proof.";
 
     window.location.href =
     `mailto:${yourEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    setTimeout(() => {
-        window.open(paymentLink, "_blank");
-    }, 800);
 }
 
 function showQR() {
-  document.getElementById("qrPopup").style.display = "flex";
+    document.getElementById("qrPopup").style.display = "flex";
 }
 
 function closeQR() {
-  document.getElementById("qrPopup").style.display = "none";
+    document.getElementById("qrPopup").style.display = "none";
 }
 </script>
 
