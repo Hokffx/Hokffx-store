@@ -5,22 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hokffx Store</title>
 
+<!-- FONTS -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 
 <style>
+
+/* 🌌 BACKGROUND */
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: radial-gradient(circle at top, #001f3f, #000814 70%);
+    background: radial-gradient(circle at top, #0a1f44, #020617 70%);
     color: white;
 }
 
+/* GLOW */
 body::before {
     content: "";
     position: fixed;
     width: 600px;
     height: 600px;
-    background: #ff003c;
+    background: #7b00ff;
     filter: blur(250px);
     top: -200px;
     left: -200px;
@@ -28,40 +33,63 @@ body::before {
     z-index: -1;
 }
 
+/* HEADER */
 .header {
     text-align: center;
-    padding: 40px 20px;
+    padding: 40px;
 }
 
 .header h1 {
-    font-size: 42px;
-    font-weight: 800;
-    background: linear-gradient(90deg, #fff, #ff003c);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 46px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, #ffffff, #c084fc, #7b00ff);
     -webkit-background-clip: text;
     color: transparent;
+    text-shadow: 0 0 20px rgba(192,132,252,0.8),
+                 0 0 40px rgba(123,0,255,0.6);
+    position: relative;
 }
 
+/* ✨ SHINE */
+.header h1::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.8), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* CONTAINER */
 .container {
     max-width: 420px;
     margin: auto;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
 }
 
+/* CARD */
 .card {
     background: rgba(255,255,255,0.05);
     border-radius: 25px;
     overflow: hidden;
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 25px;
 }
 
 .card img {
     width: 100%;
 }
 
+/* CONTENT */
 .content {
     padding: 20px;
 }
@@ -73,10 +101,10 @@ body::before {
 
 .price {
     font-size: 28px;
-    font-weight: 800;
-    color: #ff4d6d;
+    color: #c084fc;
 }
 
+/* INPUT */
 .input {
     width: 100%;
     padding: 12px;
@@ -86,26 +114,42 @@ body::before {
     text-align: center;
 }
 
+/* 💜 BUTTON */
 .btn {
     display: block;
     width: 100%;
     padding: 14px;
     margin-top: 10px;
     border-radius: 25px;
-    background: linear-gradient(135deg, #ff003c, #ff4d6d);
+    background: linear-gradient(135deg, #7b00ff, #c084fc);
     color: white;
-    text-align: center;
     font-weight: bold;
     border: none;
     cursor: pointer;
 }
 
+/* NOTE */
 .note {
     font-size: 12px;
-    margin-top: 8px;
     color: #ccc;
+    margin-top: 8px;
 }
 
+/* FAQ */
+.faq {
+    margin-top: 10px;
+    cursor: pointer;
+    color: #c084fc;
+}
+
+.answer {
+    display: none;
+    font-size: 13px;
+    margin-top: 5px;
+    color: #ddd;
+}
+
+/* POPUP */
 .popup {
     position: fixed;
     top: 0;
@@ -123,12 +167,12 @@ body::before {
     color: black;
     padding: 20px;
     border-radius: 12px;
-    text-align: center;
 }
 
 .popup img {
     width: 200px;
 }
+
 </style>
 </head>
 
@@ -140,7 +184,6 @@ body::before {
 
 <div class="container">
 
-<!-- iPhone -->
 <div class="card">
     <img src="iphone-auxilio.png">
 
@@ -150,60 +193,38 @@ body::before {
 
         <input type="email" id="email1" class="input" placeholder="Enter your Gmail">
 
-        <!-- PAY -->
         <button class="btn"
         onclick="payNow('https://razorpay.me/@enjoymenthub?amount=%2FjgOm4sSt2cRPlGWeT7aQg%3D%3D')">
         💰 PAY NOW
         </button>
 
-        <!-- ORDER -->
         <button class="btn" onclick="sendOrder('email1')">
         📩 SEND ORDER
         </button>
 
-        <!-- INTERNATIONAL -->
         <button class="btn" onclick="showQR()">
-        🌍 INTERNATIONAL PAYMENT
+        🇺🇸 INTERNATIONAL PAYMENT
         </button>
 
         <div class="note">
         Pay first → then click SEND ORDER and attach screenshot proof.
         </div>
-    </div>
-</div>
 
-<!-- Android -->
-<div class="card">
-    <img src="android-auxilio.png">
-
-    <div class="content">
-        <div class="title">Android Auxilio</div>
-        <div class="price">$6.40</div>
-
-        <input type="email" id="email2" class="input" placeholder="Enter your Gmail">
-
-        <button class="btn"
-        onclick="payNow('https://razorpay.me/@enjoymenthub?amount=%2FjgOm4sSt2cRPlGWeT7aQg%3D%3D')">
-        💰 PAY NOW
-        </button>
-
-        <button class="btn" onclick="sendOrder('email2')">
-        📩 SEND ORDER
-        </button>
-
-        <button class="btn" onclick="showQR()">
-        🌍 INTERNATIONAL PAYMENT
-        </button>
-
-        <div class="note">
-        Pay first → then click SEND ORDER and attach screenshot proof.
+        <div class="faq" onclick="toggleFAQ('faq1')">
+        ❓ Is that 100% safe?
         </div>
+        <div class="answer" id="faq1">
+        ✅ Yes, it's fully safe and accepted.<br>
+        🔒 Secure payment methods.<br>
+        ⚡ Fast delivery after verification.
+        </div>
+
     </div>
 </div>
 
 </div>
 
-<!-- QR POPUP -->
+<!-- QR -->
 <div class="popup" id="qrPopup">
   <div class="popup-box">
     <h3>Scan Binance QR</h3>
@@ -242,6 +263,11 @@ function showQR() {
 
 function closeQR() {
     document.getElementById("qrPopup").style.display = "none";
+}
+
+function toggleFAQ(id) {
+    let el = document.getElementById(id);
+    el.style.display = el.style.display === "block" ? "none" : "block";
 }
 </script>
 
