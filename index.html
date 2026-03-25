@@ -53,12 +53,10 @@ body {
     background: linear-gradient(180deg, #6a00ff, #3b008f);
 }
 
-/* IMAGE */
 .card img {
     width: 100%;
 }
 
-/* CONTENT */
 .content {
     padding: 25px;
 }
@@ -127,20 +125,20 @@ body {
     text-align: center;
 }
 
-/* POPUP */
+/* POPUP FIXED */
 .popup {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     display: none;
+    justify-content: center;   /* ✅ FIX */
+    align-items: center;       /* ✅ FIX */
     background: rgba(0,0,0,0.9);
 }
 
 .popup-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background: white;
     color: black;
     padding: 20px;
@@ -216,7 +214,7 @@ body {
 
 </div>
 
-<!-- QR POPUP -->
+<!-- ✅ FIXED QR POPUP -->
 <div class="popup" id="qrPopup">
   <div class="popup-box">
     <h3 id="qrTitle">Scan QR</h3>
@@ -247,6 +245,7 @@ function sendOrder(id) {
     `mailto:forenjoymenthub@gmail.com?subject=Order&body=Email:${email}%0AProof attached`;
 }
 
+/* ✅ FIXED QR FUNCTION */
 function showQR(type) {
     let img = document.getElementById("qrImage");
     let title = document.getElementById("qrTitle");
@@ -261,7 +260,7 @@ function showQR(type) {
         title.innerText = "Android Payment QR";
     }
 
-    document.getElementById("qrPopup").style.display = "block";
+    document.getElementById("qrPopup").style.display = "flex"; // ✅ FIX
 }
 
 function closeQR() {
