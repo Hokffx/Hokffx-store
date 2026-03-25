@@ -50,12 +50,7 @@ body {
     border-radius: 25px;
     overflow: hidden;
     margin-bottom: 25px;
-
-    background: linear-gradient(
-        180deg,
-        #6a00ff,
-        #3b008f
-    );
+    background: linear-gradient(180deg, #6a00ff, #3b008f);
 }
 
 /* IMAGE */
@@ -68,41 +63,37 @@ body {
     padding: 25px;
 }
 
-/* TITLE */
 .title {
     font-size: 24px;
     font-weight: 600;
 }
 
-/* PRICE SECTION */
+/* PRICE */
 .price-box {
     margin-top: 15px;
     display: flex;
-    align-items: center;
     gap: 10px;
+    align-items: center;
 }
 
 .old-price {
     text-decoration: line-through;
-    color: #d1d1d1;
+    color: #ddd;
     font-size: 18px;
 }
 
-/* GRADIENT PRICE */
 .price {
-    font-size: 36px;
+    font-size: 34px;
     font-weight: 800;
     background: linear-gradient(90deg, #ff00cc, #ff66ff);
     -webkit-background-clip: text;
     color: transparent;
 }
 
-/* ACCESS */
 .access {
     margin-top: 8px;
     font-size: 12px;
     letter-spacing: 3px;
-    color: #ddd;
 }
 
 /* INPUT */
@@ -133,7 +124,6 @@ body {
 .note {
     font-size: 12px;
     margin-top: 10px;
-    color: #eee;
     text-align: center;
 }
 
@@ -174,7 +164,7 @@ body {
 
 <!-- iPhone -->
 <div class="card">
-    <img src="iphone-auxilio.png">
+    <img src="iphone.png">
 
     <div class="content">
         <div class="title">iPhone Auxilio</div>
@@ -190,7 +180,7 @@ body {
 
         <button class="btn" onclick="payNow('iphone')">💰 PAY NOW</button>
         <button class="btn" onclick="sendOrder('email1')">📩 SEND ORDER</button>
-        <button class="btn" onclick="showQR('iphone')"> 🌎 INTERNATIONAL PAYMENT</button>
+        <button class="btn" onclick="showQR('iphone')"> 🇺🇸 INTERNATIONAL PAYMENT</button>
 
         <div class="note">
         send screenshot proof of payment along with order through Gmail
@@ -200,7 +190,7 @@ body {
 
 <!-- Android -->
 <div class="card">
-    <img src="android-auxilio.png">
+    <img src="android.png">
 
     <div class="content">
         <div class="title">Android Auxilio</div>
@@ -262,12 +252,12 @@ function showQR(type) {
     let title = document.getElementById("qrTitle");
 
     if(type === "iphone"){
-        img.src = "qr-iphone.png";
+        img.src = "iphone-qr.png";
         title.innerText = "iPhone Payment QR";
     }
 
     if(type === "android"){
-        img.src = "qr-android.png";
+        img.src = "android-qr.png";
         title.innerText = "Android Payment QR";
     }
 
