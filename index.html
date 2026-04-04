@@ -125,7 +125,7 @@ body {
     text-align: center;
 }
 
-/* POPUP FIXED */
+/* POPUP */
 .popup {
     position: fixed;
     top: 0;
@@ -133,8 +133,8 @@ body {
     width: 100%;
     height: 100%;
     display: none;
-    justify-content: center;   /* ✅ FIX */
-    align-items: center;       /* ✅ FIX */
+    justify-content: center;
+    align-items: center;
     background: rgba(0,0,0,0.9);
 }
 
@@ -178,7 +178,7 @@ body {
 
         <button class="btn" onclick="payNow('iphone')">💰 PAY NOW</button>
         <button class="btn" onclick="sendOrder('email1')">📩 SEND ORDER</button>
-        <button class="btn" onclick="showQR('iphone')"> 🇺🇸 INTERNATIONAL PAYMENT</button>
+        <button class="btn" onclick="showQR('iphone')">🌍 INTERNATIONAL PAYMENT</button>
 
         <div class="note">
         send screenshot proof of payment along with order through Gmail
@@ -195,7 +195,7 @@ body {
 
         <div class="price-box">
             <span class="old-price">$8</span>
-            <span class="price">$259</span>
+            <span class="price">₹259</span>
         </div>
 
         <div class="access">PERMANENT ACCESS</div>
@@ -204,7 +204,7 @@ body {
 
         <button class="btn" onclick="payNow('android')">💰 PAY NOW</button>
         <button class="btn" onclick="sendOrder('email2')">📩 SEND ORDER</button>
-        <button class="btn" onclick="showQR('android')"> 🇺🇸 INTERNATIONAL PAYMENT</button>
+        <button class="btn" onclick="showQR('android')">🌍 INTERNATIONAL PAYMENT</button>
 
         <div class="note">
         send screenshot proof of payment along with order through Gmail
@@ -214,7 +214,7 @@ body {
 
 </div>
 
-<!-- ✅ FIXED QR POPUP -->
+<!-- QR POPUP -->
 <div class="popup" id="qrPopup">
   <div class="popup-box">
     <h3 id="qrTitle">Scan QR</h3>
@@ -225,15 +225,22 @@ body {
 </div>
 
 <script>
+
+// ✅ CLEAN RAZORPAY LINKS
 function payNow(type) {
+
+    alert("Redirecting to secure payment...");
+
     if(type === "iphone"){
-        window.open("Payment of ₹400 requested by Enjoy Hub. Click the link to pay securely via Razorpay: https://razorpay.me/@enjoymenthub?amount=GjiZndswUahjxyGDJCJTMw%3D%3D");
+        window.open("https://razorpay.me/@enjoymenthub?amount=GjiZndswUahjxyGDJCJTMw%3D%3D", "_blank");
     }
+
     if(type === "android"){
-        window.open(" Payment of ₹259 requested by Enjoy Hub. Click the link to pay securely via Razorpay: https://razorpay.me/@enjoymenthub?amount=Jj1Ou5Z3lOrBsaQbgPDcMA%3D%3D");
+        window.open("https://razorpay.me/@enjoymenthub?amount=Jj1Ou5Z3lOrBsaQbgPDcMA%3D%3D", "_blank");
     }
 }
 
+// SEND ORDER
 function sendOrder(id) {
     let email = document.getElementById(id).value;
     if(email === "") {
@@ -245,7 +252,7 @@ function sendOrder(id) {
     `mailto:forenjoymenthub@gmail.com?subject=Order&body=Email:${email}%0AProof attached`;
 }
 
-/* ✅ FIXED QR FUNCTION */
+// QR
 function showQR(type) {
     let img = document.getElementById("qrImage");
     let title = document.getElementById("qrTitle");
@@ -260,12 +267,13 @@ function showQR(type) {
         title.innerText = "Android Payment QR";
     }
 
-    document.getElementById("qrPopup").style.display = "flex"; // ✅ FIX
+    document.getElementById("qrPopup").style.display = "flex";
 }
 
 function closeQR() {
     document.getElementById("qrPopup").style.display = "none";
 }
+
 </script>
 
 </body>
